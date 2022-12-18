@@ -6,28 +6,33 @@ const file = document.querySelector('#upload-file');
 const buttonCancel = document.querySelector('#upload-cancel');
 const imageUpload = document.querySelector('.img-upload__preview');
 
-file.addEventListener('change',  () => {
-  document.querySelector('.img-upload__overlay').classList.remove('hidden');
-  document.querySelector('body').classList.add('modal-open');
-  scalingPhotos();
-  doEffects();
-});
-
 const restartForm = () => {
   document.querySelector('.img-upload__overlay').classList.add('hidden');
   document.querySelector('body').classList.remove('modal-open');
   restart();
   restartEffects();
+  const pr = document.querySelector('.pristine-error');
+  if (pr) {
+    pr.style = 'display: none';
+    document.querySelector('.img-upload__submit').disabled = false;
+  }
 };
+
 buttonCancel.addEventListener('click', restartForm);
 
 const onDocumentEscKeyDown = (evt) => {
-  if(isEscape(evt) && !evt.target.classList.contains('text__description') && !evt.target.classList.contains('text__hashtags')){
-    document.querySelector('.img-upload__overlay').classList.add('hidden');
-    document.querySelector('body').classList.remove('modal-open');
+  if (isEscape(evt) && !evt.target.classList.contains('text__description') && !evt.target.classList.contains('text__hashtags')) {
+    restartForm();
     document.removeEventListener('keydown', onDocumentEscKeyDown);
   }
 };
 
-document.addEventListener('keydown', onDocumentEscKeyDown);
+file.addEventListener('change', () => {
+  document.querySelector('.img-upload__overlay').classList.remove('hidden');
+  document.querySelector('body').classList.add('modal-open');
+  document.addEventListener('keydown', onDocumentEscKeyDown);
+  scalingPhotos();
+  doEffects();
+});
+
 export { imageUpload, restartForm };
