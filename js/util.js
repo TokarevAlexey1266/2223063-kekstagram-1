@@ -8,7 +8,7 @@ function getRandomNumber(first, second){
   }
   return 'неверные данные';
 }
-}
+
 
 function checkStringLength (string, length) {
   return string.length <= length;
