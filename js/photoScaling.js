@@ -49,13 +49,12 @@ const doScaling = (evt) => {
 const scalingPhotos = () => {
   buttons.addEventListener('click', doScaling);
   scaleValue.addEventListener('change', reValue);
-  scaleValue.value = `${START_SCALING * 100  }%`;
-  imageUpload.style.transform = `scale(${Scale.START_SCALING})`;
+  scaleValue.value = `${scaling * 100  }%`;
+  imageUpload.style.transform = `scale(${scaling})`;
 };
 const restart = () => {
   buttons.removeEventListener('click', doScaling);
   scaling = Scale.START_SCALING;
 };
-
 
 export { scalingPhotos, restart };
