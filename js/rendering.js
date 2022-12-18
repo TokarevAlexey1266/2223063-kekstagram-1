@@ -2,40 +2,35 @@ import { showBigPictures } from './bigPicture.js';
 
 const picture = document.querySelector('.pictures');
 const picturesTemplate = document.querySelector('#picture').content.querySelector('.picture');
-const newPhoto = document.createDocumentFragment();
+const newFragment = document.createDocumentFragment();
 let pic;
 
 const renderPhoto = (photo) => {
-  const item = picturesTemplate.cloneNode(true);
+  const item = templatePictures.cloneNode(true);
+  item.querySelector('.picture__img').src = photo.url;
+  item.querySelector('.picture__likes').textContent = photo.likes;
+  item.querySelector('.picture__comments').textContent = photo.comments.length;
 
-  const img = item.querySelector('.picture__img');
-  img.src = photo.url;
-
-  const likes = item.querySelector('.picture__likes');
-  likes.textContent = photo.likes;
-
-  const comments = item.querySelector('.picture__comments');
-  comments.textContent = photo.comments.length;
   item.addEventListener('click', (evt) => {
     evt.preventDefault();
     showBigPictures(photo);
   });
+
   return item;
 };
 
 const renderPhotos = (photos) => {
   photos.forEach((photo) => {
-    newPhoto.appendChild(renderPhoto(photo));
+    newFragment.appendChild(renderPhoto(photo));
   });
-  picture.appendChild(newPhoto);
+  picture.appendChild(newFragment);
   pic = picture.querySelectorAll('a');
 };
 
-
-const removePhotos = () => {
+const removePictures = () => {
   for (let i = 0; i < pic.length; i++) {
     picture.removeChild(picture.querySelectorAll('a')[0]);
   }
 };
-export { renderPhotos, removePhotos};
 
+export { renderPhotos, removePictures };
