@@ -1,11 +1,10 @@
 import { imageUpload } from './uploadFile.js';
 
-const FIRST_EFFECT = 'none';
-
+const START_EFFECT = 'none';
 const effects = document.querySelector('.effects__list');
 const slider = document.querySelector('.img-upload__effect-level');
 
-let currentEffect = FIRST_EFFECT;
+let nowEffect = START_EFFECT;
 
 noUiSlider.create(slider, {
   range: {
@@ -18,7 +17,6 @@ noUiSlider.create(slider, {
 });
 
 slider.disabled = true;
-
 
 const reSlider = (effect) => {
   let maxValue = 1;
@@ -72,7 +70,6 @@ const reSlider = (effect) => {
 const takeEffect = (effect) => {
   imageUpload.classList.remove(`effects__preview--${nowEffect}`);
   imageUpload.classList.add(`effects__preview--${effect}`);
-
   if (effect === 'none') {
     slider.disabled = false;
     slider.classList.add('hidden');
@@ -85,15 +82,18 @@ const takeEffect = (effect) => {
   }
 };
 
-const addEffect = (evt) => {
+const onClickEffectsAddEffect = (evt) => {
   if (evt.target.name === 'effect') {
     takeEffect(evt.target.value);
   }
 };
+
 const restartEffects = () => {
+  document.querySelector('.img-upload__form').reset();
+  imageUpload.classList.remove(`effects__preview--${nowEffect}`);
   slider.classList.add('hidden');
-  effects.removeEventListener('click', addEffect);
-  imageUpload.removeAttribute('class');
+  effects.removeEventListener('click', onClickEffectsAddEffect);
+
   slider.noUiSlider.updateOptions({
     range: {
       min: 0,
@@ -103,12 +103,11 @@ const restartEffects = () => {
     step: 1,
     connect: 'lower',
   });
-  takeEffect('none');
 };
 
 const doEffects = () => {
   imageUpload.style.filter = '';
-  effects.addEventListener('click', addEffect);
+  effects.addEventListener('click', onClickEffectsAddEffect);
 };
 
 export { doEffects, restartEffects };
