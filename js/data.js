@@ -20,42 +20,31 @@ const MESSAGE = [
   'Чудесно все'
 ];
 
-const DESCRIPTIONS  = [
-  'Это просто доказательство того, что я могу быть лучшим эгоистом, чем вы.',
-  'Я очень творческая личность — хочу творю, хочу вытворяю!',
-  'Дружба — это один разум в двух телах',
-  'Закон подлости — это единственный закон, который реально работает в нашей стране!'
-];
-
-
-const PHOTO_DESCRIPTION = [];
-
-const getRandomArrayElement = function (elements) {
-  return elements[getRandomNumber(0, elements.length - 1)];
-};
-
+const allPhotoInfo = [];
 
 function createPhotoDescriptions () {
+  
   for (let i = 0; i < PHOTO_COUNT; i++) {
-    PHOTO_DESCRIPTION[i] = {
+    allPhotoInfo[i] = {
       id: i + 1,
       url: `photos/${i}.jpg`,
-      description: DESCRIPTIONS[i],
+      description: `Описание ${index + 1}`,
       likes: getRandomNumber(15, 200),
       comments: createComments(getRandomNumber(1,17))
     };
   }
-  return PHOTO_DESCRIPTION;
+  return allPhotoInfo;
 }
 
 function createComments() {
+  
   const comments = [];
   for (let i = 0; i < PHOTO_COUNT; i++){
     comments[i] = {
       id: i + 1,
       avatar: `img/avatar${getRandomNumber(1, 6)}.svg`,
-      message: getRandomArrayElement(MESSAGE),
-      name: getRandomArrayElement(NAMES)
+      message: MESSAGE[getRandomNumber(0, MESSAGES.length - 1))],
+      name: NAMES[getRandomNumber(0, NAMES.length - 1))],
     };
   }
 
@@ -63,4 +52,4 @@ function createComments() {
 }
 
 createPhotoDescriptions();
-export {NAMES, MESSAGE, createPhotoDescriptions, createComments, PHOTO_DESCRIPTION};
+export {NAMES, MESSAGE, createPhotoDescriptions, createComments, allPhotoInfo};
