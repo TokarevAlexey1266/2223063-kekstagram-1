@@ -1,13 +1,12 @@
+import './uploadFile.js';
 import './rendering.js';
-import './data.js';
 import './bigPicture.js';
 import './hashtag.js';
-import './uploadFile.js';
-import './photoEffects.js';
 import './photoScaling.js';
+import './photoEffects.js';
 import './server.js';
-import './uploadPhoto.js';
 import './filterPhotos.js';
+import './uploadPhoto.js';
 
 import { renderPhotos } from './rendering.js';
 import { sendRequest } from './server.js';
