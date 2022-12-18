@@ -1,9 +1,13 @@
 const ALERT_SHOW_TIME = 5000;
 
 function getRandomNumber(first, second){
-  const lower = Math.ceil(Math.min(Math.abs(first), Math.abs(second)));
-  const upper = Math.floor(Math.max(Math.abs(first), Math.abs(second)));
-  return Math.floor(Math.random() * (upper - lower + 1) + lower);
+  first = Math.ceil(first);
+  second = Math.floor(second);
+  if (first < second) {
+    return Math.floor(Math.random() * (second - first + 1)) + first;
+  }
+  return 'неверные данные';
+}
 }
 
 function checkStringLength (string, length) {
@@ -11,6 +15,7 @@ function checkStringLength (string, length) {
 }
 
 const isEscape = (evt) => evt.key === 'Escape';
+
 const showAlert = (message) => {
   const alertContainer = document.createElement('div');
   alertContainer.style.zIndex = '100';
