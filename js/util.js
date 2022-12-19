@@ -1,18 +1,17 @@
 const ALERT_SHOW_TIME = 5000;
 
 function getRandomNumber(first, second){
-  first = Math.ceil(first);
-  second = Math.floor(second);
-  if (first < second) {
-    return Math.floor(Math.random() * (second - first + 1)) + first;
+    first = Math.ceil(first);
+    second = Math.floor(second);
+    if (first < second) {
+      return Math.floor(Math.random() * (second - first + 1)) + first;
+    }
+    return 'неверные данные';
   }
-  return 'неверные данные';
-}
 
-
-function checkStringLength (string, length) {
-  return string.length <= length;
-}
+  function checkStringLength (string, length) {
+    return string.length <= length;
+  }
 
 const isEscape = (evt) => evt.key === 'Escape';
 
@@ -70,4 +69,4 @@ const throttle = (callback, delayBetweenFrames) => {
   };
 };
 
-export { getRandomNumber, checkStringLength, isEscape, showAlert, mixArray, debounce, throttle };
+export { getRandomNumber, isEscape, showAlert, debounce, throttle, mixArray, checkStringLength };
