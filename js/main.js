@@ -1,17 +1,17 @@
 import './uploadFile.js';
 import './rendering.js';
-import './bigPicture.js';
+import './bigPictures.js';
 import './hashtag.js';
 import './photoScaling.js';
 import './photoEffects.js';
 import './server.js';
-import './filterPhotos.js';
+import './PhotoFilter.js';
 import './uploadPhoto.js';
 
 import { renderPhotos } from './rendering.js';
 import { sendRequest } from './server.js';
 import { showAlert } from './util.js';
-import { getPhotos } from './filterPhotos.js';
+import { getPhotos } from './PhotoFilter.js';
 
 const onSuccess = (data) => {
   renderPhotos(data);
