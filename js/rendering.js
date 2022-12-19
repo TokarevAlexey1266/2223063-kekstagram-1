@@ -1,7 +1,10 @@
-import { showBigPictures } from './bigPicture.js';
+import { showBigPictures } from './bigPictures.js';
 
 const picture = document.querySelector('.pictures');
-const picturesTemplate = document.querySelector('#picture').content.querySelector('.picture');
+
+const template = document.querySelector('#picture').content;
+const templatePictures = template.querySelector('.picture');
+
 const newFragment = document.createDocumentFragment();
 let pic;
 
