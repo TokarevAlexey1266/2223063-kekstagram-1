@@ -1,6 +1,6 @@
 import { isEscape } from './util.js';
-import { scalingPhotos, restart } from './scalingPhoto.js';
-import { doEffects, restartEffects } from './effectsOnPhoto.js';
+import { scalingPhotos, restart } from './photoScaling.js';
+import { doEffects, restartEffects } from './photoEffects.js';
 
 const file = document.querySelector('#upload-file');
 const buttonCancel = document.querySelector('#upload-cancel');
