@@ -1,4 +1,4 @@
-import { imageUpload } from './formUpload.js';
+import { imageUpload } from './uploadFile.js';
 
 const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 const fileChooser = document.querySelector('#upload-file');
