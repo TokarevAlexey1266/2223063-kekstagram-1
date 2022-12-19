@@ -1,9 +1,8 @@
-import { removePhotos, renderPhotos } from './rendering.js';
+import { removePictures, renderPhotos } from './rendering.js';
 import { mixArray, debounce } from './util.js';
 
 const COUNT_COMMENTS = 10;
 const formFilters = document.querySelector('.img-filters__form');
-
 let data;
 
 const getPhotos = (d) => {
@@ -11,10 +10,10 @@ const getPhotos = (d) => {
 };
 
 const filters = {
-  'filter-default': () => data.slice(),
-  'filter-random': () => mixArray(data).slice(0, COUNT_COMMENTS),
-  'filter-discussed': () => data.slice().sort((firstElement, secondElement) => secondElement.comments.length - firstElement.comments.length)
-};
+    'filter-default': () => data.slice(),
+    'filter-random': () => mixArray(data).slice(0, COUNT_COMMENTS),
+    'filter-discussed': () => data.slice().sort((firstElement, secondElement) => secondElement.comments.length - firstElement.comments.length)
+  };
 
 const onClickFilter = debounce((evt) => {
   if (evt.target.tagName === 'BUTTON') {
@@ -23,7 +22,7 @@ const onClickFilter = debounce((evt) => {
       selected.classList.remove('img-filters__button--active');
     }
     evt.target.classList.add('img-filters__button--active');
-    removePhotos();
+    removePictures();
     renderPhotos(filters[evt.target.id]());
   }
 });
