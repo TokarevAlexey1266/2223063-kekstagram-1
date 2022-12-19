@@ -1,6 +1,5 @@
 import { sendRequest } from './server.js';
-import { showAlert } from './util.js';
-import { isEscape } from './util.js';
+import { showAlert, isEscape } from './util.js';
 import { restartForm } from './uploadFile.js';
 
 const MAX_SYMBOLS = 20;
@@ -24,8 +23,8 @@ const pristine = new Pristine(form, {
 
 const hashtags = document.querySelector('.text__hashtags');
 
-let errorMessage = '';
-const error = () => errorMessage;
+let errorMessages = '';
+const error = () => errorMessages;
 
 const hashtagsHandler = (value) => {
   errorMessages = '';
@@ -88,7 +87,7 @@ const removeMessage = () => {
     restartForm();
   }
   if (mes.querySelector('.error')) {
-    document.querySelector('.error_message').remove();
+    document.querySelector('.error').remove();
     document.querySelector('.error_message').remove();
     document.querySelector('.img-upload__overlay').classList.add('hidden');
     document.querySelector('body').classList.remove('modal-open');
@@ -110,9 +109,10 @@ const onWindowClick = (evt) => {
 
   if (!withinBoundaries) {
     removeMessage();
-    document.removeEventListener('keydown', onWindowClick);
+    document.removeEventListener('click', onWindowClick);
   }
 };
+
 const doSuccessMessage = () => {
   const message = successMessage.cloneNode(true);
   newFragment.append(message);
