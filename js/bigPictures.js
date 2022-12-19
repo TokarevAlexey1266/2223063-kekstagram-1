@@ -1,11 +1,11 @@
-import { PHOTO_DESCRIPTION } from './data.js';
+import { isEscape } from './util.js';
 
 const COMMENTS_COUNT = 5;
 let currentCount = COMMENTS_COUNT;
 const arrayLi = [];
 
 const popUp = document.querySelector('.big-picture');
-const buttonClose = document.querySelector('.big-picture__cancel');
+const closeButton = document.querySelector('.big-picture__cancel');
 const updateMore = document.querySelector('.comments-loader');
 
 const commentAbout = popUp.querySelector('.social__comments');
@@ -14,11 +14,11 @@ const commentCopy = commentAbout.querySelector('li');
 const commentsCount = popUp.querySelector('.social__comment-count');
 const commentCount = commentsCount.querySelector('.comments-count');
 
-const showComments = commentsCount.querySelector('.showCount');
-showComments.textContent = COMMENTS_COUNT;
+const showCom = commentsCount.querySelector('.showCount');
+showCom.textContent = COMMENTS_COUNT;
 
 const onDocumentEscKeyDown = (evt) => {
-  if (PHOTO_DESCRIPTION(evt) && !evt.target.classList.contains('big-picture')) {
+  if (isEscape(evt) && !evt.target.classList.contains('big-picture')) {
     popUp.classList.add('hidden');
     document.querySelector('body').classList.remove('modal-open');
     document.removeEventListener('keydown', onDocumentEscKeyDown);
@@ -28,14 +28,14 @@ const onDocumentEscKeyDown = (evt) => {
 
 const onUpdateMoreClick = () => {
 
-  if(currentCount >= arrayLi.length) {
+  if (currentCount >= arrayLi.length) {
     currentCount = arrayLi.length;
     updateMore.classList.add('hidden');
   }
 
   const currentComments = arrayLi.slice(0, currentCount);
 
-  for(let i = 0; i < currentComments.length; i++) {
+  for (let i = 0; i < currentComments.length; i++) {
     currentComments[i].classList.remove('hidden');
   }
 
@@ -57,9 +57,9 @@ const addComments = (comments, array) => {
     array.push(newElement);
     commentAbout.appendChild(newElement);
   }
-  
-    for(let z = COMMENTS_COUNT; z < arrayLi.length; z++) {
-      arrayLi[z].classList.add('hidden');
+
+  for (let z = COMMENTS_COUNT; z < arrayLi.length; z++) {
+    arrayLi[z].classList.add('hidden');
   }
 
   currentCount += COMMENTS_COUNT;
@@ -88,7 +88,7 @@ const showBigPictures = (photo) => {
 
   addComments(photo.comments, arrayLi);
 
-  if(photo.comments.length <= 5) {
+  if (photo.comments.length <= 5) {
     showCom.textContent = photo.comments.length;
     updateMore.classList.add('hidden');
   } else {
@@ -99,7 +99,6 @@ const showBigPictures = (photo) => {
   document.querySelector('body').classList.add('modal-open');
 };
 
-
 closeButton.addEventListener('click', () => {
   popUp.classList.add('hidden');
   document.querySelector('body').classList.remove('modal-open');
@@ -108,6 +107,5 @@ closeButton.addEventListener('click', () => {
   arrayLi.length = 0;
   updateMore.removeEventListener('click', onUpdateMoreClick);
 });
-
 
 export { showBigPictures };
